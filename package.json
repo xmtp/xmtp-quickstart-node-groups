@@ -2,7 +2,7 @@
   "type": "module",
   "dependencies": {
     "@xmtp/content-type-text": "^1.0.0",
-    "@xmtp/mls-client": "^0.0.12",
+    "@xmtp/mls-client": "^0.0.14",
     "dotenv": "^16.4.5",
     "ethers": "^5.7.2",
     "viem": "^2.13.10"
