@@ -53,13 +53,19 @@ async function setupClient(wallet, config = {}) {
 
 // Function to register the client if not already registered
 async function registerClient(client, wallet) {
-  if (!client.isRegistered) {
-    const signature = toBytes(
-      await wallet.signMessage({
-        message: client.signatureText,
-      }),
-    );
-    client.addEcdsaSignature(signature);
+  // register identity
+  if (!client.isRegistered && client.signatureText) {
+    const signatureText = await client.signatureText();
+    if (signatureText) {
+      const signature = await wallet.signMessage({
+        message: signatureText,
+      });
+      const signatureBytes = toBytes(signature);
+      if (signatureBytes) {
+        client.addSignature(signatureBytes);
+      }
+    }
+
     await client.registerIdentity();
   }
 }
