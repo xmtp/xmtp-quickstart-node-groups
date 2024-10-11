@@ -17,13 +17,13 @@ async function setupClient(privateKey) {
     transport: http(),
   });
 
-  if (!fs.existsSync(`.cache`)) {
-    fs.mkdirSync(`.cache`);
+  if (!fs.existsSync(`.data`)) {
+    fs.mkdirSync(`.data`);
   }
 
   const defaultConfig = {
     env: "production",
-    dbPath: `.cache/${account.address}-production`,
+    dbPath: `.data/${account.address}-production`,
     codecs: [new TextCodec()],
   };
   const client = await Client.create(account.address, defaultConfig);

@@ -108,11 +108,11 @@ async function main() {
   // Create a new wallet instance
   const wallet = await createWallet();
   // Set up the XMTP client with the wallet and database path
-  if (!fs.existsSync(`.cache`)) {
-    fs.mkdirSync(`.cache`);
+  if (!fs.existsSync(`.data`)) {
+    fs.mkdirSync(`.data`);
   }
   const client = await setupClient(wallet, {
-    dbPath: `.cache/${wallet.account?.address}-${"prod"}`,
+    dbPath: `.data/${wallet.account?.address}-${"prod"}`,
   });
   // Register the client with the XMTP network if not already registered
   await registerClient(client, wallet);
